@@ -221,7 +221,7 @@ const resolvers = {
 			if(context.userId) {
 				const selectedEvent = results.find(event => event.id == args.event)
 
-				if(selectedTask) {
+				if(selectedEvent) {
 					await client
 					.database('bullet-journal')
 					.container('events')
