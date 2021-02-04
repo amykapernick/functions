@@ -57,6 +57,7 @@ const typeDefs = gql`
 		list: String
 		section: String
 		due: Date
+		completed: Boolean
 	}
 
 	input EventInput {
