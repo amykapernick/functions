@@ -27,7 +27,7 @@ const typeDefs = gql`
 
 	type Note {
 		id: ID!
-		notes: String!
+		notes: String
 		section: Section!
 	}
 
