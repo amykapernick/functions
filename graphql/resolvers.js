@@ -178,6 +178,22 @@ const resolvers = {
 			}
 			return await events()
 		},
+		addNote: async (obj, args, context) => {
+			if(context.userId) {
+				await client
+					.database('bullet-journal')
+					.container('notes')
+					.items
+					.create({
+						...args.note
+					})
+
+				const results = await notes()
+	
+				return results
+			}
+			return await notes()
+		},
 		deleteTask: async (obj, args, context) => {
 			const results = await tasks()
 
