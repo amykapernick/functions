@@ -129,19 +129,21 @@ const resolvers = {
 	Mutation: {
 		addTask: async (obj, args, context) => {
 			if(context.userId) {
-				await client
-					.database('bullet-journal')
-					.container('tasks')
-					.items
-					.create({
-						...args.task
-					})
+				const {resource: newItem} = await client
+				.database('bullet-journal')
+				.container('tasks')
+				.items
+				.create({
+					...args.task
+				})
+
+				console.log(newItem)
 
 				const results = await tasks()
 	
-				return results
+				return results.find((task) => task.id === newItem.id)
 			}
-			return await tasks()
+			return {}
 		},
 		addSection: async (obj, args, context) => {
 			const results = await sections()
