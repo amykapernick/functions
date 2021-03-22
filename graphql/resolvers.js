@@ -137,7 +137,6 @@ const resolvers = {
 					...args.task
 				})
 
-				console.log(newItem)
 
 				const results = await tasks()
 	
@@ -146,23 +145,22 @@ const resolvers = {
 			return {}
 		},
 		addSection: async (obj, args, context) => {
-			const results = await sections()
+			let results = await sections()
 			if(context.userId) {
 				if(!results.some(section => section.sectionId == args.section.sectionId)) {
-					await client
-					.database('bullet-journal')
-					.container('sections')
-					.items
-					.create({
-						...args.section
-					})
+					const {resource: newSection} = await client
+						.database('bullet-journal')
+						.container('sections')
+						.items
+						.create({
+							...args.section
+						})
 
-					const newResults = await sections()
-		
-					return newResults
-				}				
+					results = await sections()
+				}	
+				
+				return results.find((section) => section.id === args.section.id)
 			}
-			return results
 		},
 		addEvent: async (obj, args, context) => {
 			if(context.userId) {
