@@ -142,7 +142,6 @@ const resolvers = {
 	
 				return results.find((task) => task.id === newItem.id)
 			}
-			return {}
 		},
 		addSection: async (obj, args, context) => {
 			let results = await sections()
@@ -157,9 +156,11 @@ const resolvers = {
 						})
 
 					results = await sections()
+
+					results.find((section) => section.id === newSection.id)
 				}	
 				
-				return results.find((section) => section.id === args.section.id)
+				return results.find(section => section.sectionId == args.section.sectionId)
 			}
 		},
 		addEvent: async (obj, args, context) => {
@@ -180,7 +181,7 @@ const resolvers = {
 		},
 		addNote: async (obj, args, context) => {
 			if(context.userId) {
-				await client
+				const {resource: newNotes} = await client
 					.database('bullet-journal')
 					.container('notes')
 					.items
@@ -189,10 +190,9 @@ const resolvers = {
 					})
 
 				const results = await notes()
-	
-				return results
+
+				return results.find((note) => note.id === note.id)
 			}
-			return await notes()
 		},
 		deleteTask: async (obj, args, context) => {
 			const results = await tasks()
