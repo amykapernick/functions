@@ -65,16 +65,19 @@ const typeDefs = gql`
 		startDate: Date
 		endDate: Date
 		section: String
+		id: ID
 	}
 
 	input NoteInput {
 		notes: String
 		section: String
+		id: ID
 	}
 
 	input SectionInput {
 		sectionId: ID
 		period: Period
+		id: ID
 	}
 
 	type Mutation {
