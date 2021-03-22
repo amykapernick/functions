@@ -165,7 +165,7 @@ const resolvers = {
 		},
 		addEvent: async (obj, args, context) => {
 			if(context.userId) {
-				await client
+				const {resource: newEvent} = await client
 					.database('bullet-journal')
 					.container('events')
 					.items
@@ -174,10 +174,9 @@ const resolvers = {
 					})
 
 				const results = await events()
-	
-				return results
+
+				return results.find((event) => event.id === newEvent.id)
 			}
-			return await events()
 		},
 		addNote: async (obj, args, context) => {
 			if(context.userId) {
@@ -275,8 +274,6 @@ const resolvers = {
 					return newResults.find(task => task.id == args.task.id)
 				}					
 			}
-
-			return results
 		},
 		editEvent: async (obj, args, context) => {
 			const results = await events()
@@ -317,8 +314,6 @@ const resolvers = {
 					return newResults.find(event => event.id == args.event.id)
 				}					
 			}
-
-			return results
 		},
 		editNote: async (obj, args, context) => {
 			const results = await notes()
