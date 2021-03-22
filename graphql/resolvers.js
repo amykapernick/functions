@@ -191,7 +191,7 @@ const resolvers = {
 
 				const results = await notes()
 
-				return results.find((note) => note.id === note.id)
+				return results.find((note) => note.id === newNotes.id)
 			}
 		},
 		deleteTask: async (obj, args, context) => {
@@ -335,7 +335,7 @@ const resolvers = {
 
 					const newResults = await notes()
 		
-					return newResults
+					return newResults.find((note) => note.section == args.note.section)
 				}	
 				else {
 					const note = results.find(note => note.section == args.note.section)
@@ -352,7 +352,7 @@ const resolvers = {
 
 					const newResults = await notes()
 		
-					return newResults
+					return newResults.find((n) => n.section == note.section)
 				}			
 			}
 
