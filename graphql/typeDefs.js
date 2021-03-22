@@ -78,9 +78,9 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		addTask(task: TaskInput): [Task]
-		addSection(section: SectionInput): [Section]
-		addEvent(event: EventInput): [Event]
+		addTask(task: TaskInput): Task
+		addSection(section: SectionInput): Section
+		addEvent(event: EventInput): Event
 		addNote(note: NoteInput): Note
 		deleteTask(task: ID): [Task]
 		deleteEvent(event: ID): [Event]
