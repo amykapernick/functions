@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "doppler run func start",
-    "test": "echo \"No tests yet...\""
+    "start": "func start",
+    "dev": "doppler run func start"
   },
   "author": "Amy Kapernick <amy@kapers.dev> (https://amyskapers.dev)",
   "license": "MIT",
