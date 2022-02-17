@@ -1,5 +1,6 @@
 const fetchResources = require("../utils/notion/fetchResources")
 const addResource = require("../utils/notion/addResource")
+const formatData = require("../utils/formatFormData")
 
 module.exports = async function (context, req) {
     const { Client } = require("@notionhq/client")
@@ -11,9 +12,9 @@ module.exports = async function (context, req) {
 
     const { method, query: { section }, body } = req
 
-    console.log({ method, section, body })
-
     let database
+    let formData
+    let response = {}
 
     switch(section) {
         case 'html':
@@ -38,21 +39,28 @@ module.exports = async function (context, req) {
             database,
             notion
         }).then(res => res).catch((err) => err)
+
+        response.status = 200
+        response.body = {data}
+        response.headers = {"Content-Type": "application/json"}
     }
     else if(method == 'POST') {
+        formData = formatData(decodeURIComponent(body).split(`&`))
         data = await addResource({
             database,
             notion,
-            body
+            body: formData
         }).then(res => res).catch((err) => err)
+
+        response.status = 302
+        response.body = {}
+        response.headers = {Location: formData.redirect}
     }
 
+    console.log(formData)
 
-    context.res = {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: { data }
-    }
+    context.res = response
+
+    context.done()
     
 }

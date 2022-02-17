@@ -18,8 +18,6 @@ const addResource = async ({database, notion, body}) => {
 		})
 	}
 
-	console.log({children, image, imageUrl})
-
 	const data = await notion.pages.create({
 		parent: {
 			database_id: database
