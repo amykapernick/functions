@@ -3,23 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "func start",
+    "start": "doppler run func start",
     "test": "echo \"No tests yet...\""
   },
   "author": "Amy Kapernick <amy@kapers.dev> (https://amyskapers.dev)",
   "license": "MIT",
   "dependencies": {
-    "@azure/cosmos": "^3.9.3",
-    "apollo-server": "^2.19.1",
-    "apollo-server-azure-functions": "^2.19.1",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.17.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "graphql": "^15.4.0",
-    "node-fetch": "^2.6.1",
-    "stylelint": "^13.8.0",
-    "stylelint-config-property-sort-order-smacss": "^7.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.18.0"
+    "@azure/cosmos": "^3.15.1",
+    "@notionhq/client": "^0.4.13",
+    "apollo-server": "^3.6.3",
+    "apollo-server-azure-functions": "^3.6.3",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "graphql": "^16.3.0",
+    "node-fetch": "^2.6.7",
+    "stylelint": "^14.5.1",
+    "stylelint-config-property-sort-order-smacss": "^8.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.1.0"
   }
 }

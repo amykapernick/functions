@@ -7,14 +7,13 @@
       "name": "req",
       "methods": [
         "get",
-        "post",
-        "options"
+        "post"
       ]
     },
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "res"
     }
   ]
 }
